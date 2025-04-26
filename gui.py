@@ -2,13 +2,12 @@ import sys
 import threading
 import json
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, 
-                             QTextEdit, QFileDialog, QTabWidget, QFrame, QSplitter, QGroupBox, 
+                             QTextEdit, QFileDialog, QTabWidget, QGroupBox, 
                              QGridLayout, QProgressBar, QLineEdit, QComboBox, QMessageBox, QCheckBox,
                              QTableWidget, QTableWidgetItem, QHeaderView)
-from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QFont, QPalette, QColor, QIcon
-
-from firewall import start_sniffing, stop_sniffing
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QFont, QColor
+from firewall import start_sniffing, stop_sniffing, reload_firewall_rules
 from rules_manager import load_rules
 import cli_dashboard as dashboard
 import time as time
@@ -626,7 +625,7 @@ class FirewallGUI(QWidget):
         self.logs_text.append("[" + time.strftime("%H:%M:%S") + "] Firewall monitoring stopped.")
 
     def reload_rules(self):
-        load_rules()
+        reload_firewall_rules()
         self.load_existing_rules()
         self.activity_text.append("[" + time.strftime("%H:%M:%S") + "] Rules reloaded successfully!")
         self.logs_text.append("[" + time.strftime("%H:%M:%S") + "] Rules reloaded successfully!")

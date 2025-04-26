@@ -1,26 +1,11 @@
 [
     {
         "src_ip": "192.168.1.100",
-        "dest_ip": "192.168.1.101",
-        "src_port": "any",
-        "dest_port": "any",
-        "protocol": "TCP",
-        "action": "block"
-    },
-    {
-        "src_ip": "any",
         "dest_ip": "any",
-        "src_port": "any",
-        "dest_port": "443",
-        "protocol": "TCP",
-        "action": "block"
-    },
-    {
-        "src_ip": "any",
-        "dest_ip": "any",
-        "src_port": "any",
-        "dest_port": "443",
-        "protocol": "Any",
-        "action": "block"
+        "src_port": "443",
+        "dest_port": "80",
+        "protocol": "UDP",
+        "action": "block",
+        "priority": false
     }
 ]
