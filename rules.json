@@ -1,11 +1,20 @@
 [
     {
         "src_ip": "any",
-        "dest_ip": "142.250.181.110",
+        "dest_ip": "96.7.128.198",
         "src_port": "any",
         "dest_port": "any",
-        "protocol": "Any",
+        "protocol": "TCP",
         "action": "block",
-        "priority": true
+        "priority": false
+    },
+    {
+        "src_ip": "any",
+        "dest_ip": "65.108.97.18",
+        "src_port": "any",
+        "dest_port": "any",
+        "protocol": "TCP",
+        "action": "block",
+        "priority": false
     }
 ]

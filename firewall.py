@@ -22,15 +22,11 @@ def reload_firewall_rules():
     debug_logger.info("Firewall rules reloaded")
 
 def process_packet(packet):
-    raw = packet.raw
     packet_info = extract_packet_info(packet)
     action = match_packet(packet_info, rules)
-
     src_ip, dst_ip, protocol, src_port, dst_port = packet_info
-
-    debug_logger.debug(f"Packet: {src_ip}:{src_port} -> {dst_ip}:{dst_port} ({protocol}) - Action: {action}")
+    debug_logger.debug(f"Raw packet dest IP: {dst_ip}")
     dashboard.update_stats(action)
-
     if action == "block":
         log_blocked(packet_info)
         if detect_attack(src_ip):
@@ -44,7 +40,7 @@ def start_sniffing():
     global firewall_running
     firewall_running = True
     debug_logger.info("Firewall started sniffing")
-    with pydivert.WinDivert("ip and (tcp or udp or icmp)") as w:
+    with pydivert.WinDivert("outbound and ip") as w:
         for packet in w:
             if not firewall_running:
                 break

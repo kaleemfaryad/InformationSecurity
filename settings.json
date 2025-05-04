@@ -1,0 +1,7 @@
+{
+    "auto_start": false,
+    "log_all_packets": true,
+    "notify_attacks": true,
+    "log_retention_days": 30,
+    "attack_threshold": 5
+}
