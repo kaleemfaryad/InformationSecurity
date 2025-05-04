@@ -44,7 +44,7 @@ def start_sniffing():
     global firewall_running
     firewall_running = True
     debug_logger.info("Firewall started sniffing")
-    with pydivert.WinDivert("true") as w:
+    with pydivert.WinDivert("ip and (tcp or udp or icmp)") as w:
         for packet in w:
             if not firewall_running:
                 break

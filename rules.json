@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "src_ip": "any",
+        "dest_ip": "142.250.181.110",
+        "src_port": "any",
+        "dest_port": "any",
+        "protocol": "Any",
+        "action": "block",
+        "priority": true
+    }
+]

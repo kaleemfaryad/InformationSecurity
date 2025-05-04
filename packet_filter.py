@@ -9,18 +9,27 @@ def extract_packet_info(packet):
     src_port = ""
     dst_port = ""
 
-    if packet.protocol == 6:  # TCP
+    proto = packet.protocol
+    if isinstance(proto, tuple):
+        proto = proto[0]  # Use only the first element
+
+    print("Raw packet protocol:", proto)
+
+    if proto == 6:  # TCP
         protocol = "TCP"
-        src_port = packet.src_port
-        dst_port = packet.dst_port
-    elif packet.protocol == 17:  # UDP
+        src_port = getattr(packet, "src_port", "")
+        dst_port = getattr(packet, "dst_port", "")
+    elif proto == 17:  # UDP
         protocol = "UDP"
-        src_port = packet.src_port
-        dst_port = packet.dst_port
-    elif packet.protocol == 1:  # ICMP
+        src_port = getattr(packet, "src_port", "")
+        dst_port = getattr(packet, "dst_port", "")
+    elif proto == 1:  # ICMP
         protocol = "ICMP"
 
+    print(f"Extracted: {src_ip}:{src_port} -> {dst_ip}:{dst_port} ({protocol})")
     return src_ip, dst_ip, protocol, src_port, dst_port
+
+
 
 def ip_match(rule_ip, packet_ip):
     """Check if IP matches, supporting exact match, CIDR notation, or 'any'"""
