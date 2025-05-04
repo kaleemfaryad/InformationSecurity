@@ -1,7 +1,5 @@
 # Packet Filtering Firewall
 
-![Firewall GUI Screenshot](gui_screenshot.png) <!-- Add actual screenshot if available -->
-
 A Python-based network firewall with packet filtering capabilities, attack detection, and both GUI and CLI interfaces.
 
 ## Features
@@ -27,7 +25,19 @@ A Python-based network firewall with packet filtering capabilities, attack detec
    ```bash
    git clone https://github.com/kaleemfaryad/InformationSecurity.git
    cd InformationSecurity
-   pip install -r requirements.txt
-   
+
+2. Install the requirements:
+    pip install -r requirements.txt
+
+3. Install Windivert from https://reqrypt.org/windivert.html
+    place the sys lib and dll files inside x64 or x86 folders in the same folder as gui.py
+
+4. Run the project
+    open cmd as administrator
+    cd path/to/InformationSecurity
+    python gui.py
+
+
+
 
 
