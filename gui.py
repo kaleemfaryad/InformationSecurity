@@ -462,29 +462,36 @@ class FirewallGUI(QWidget):
 
     def delete_selected_rule(self):
         selected_rows = self.rules_table.selectionModel().selectedRows()
-        
+
         if not selected_rows:
             QMessageBox.warning(self, "No Selection", "Please select a rule to delete.")
             return
-            
+
         try:
+        # Get the row index from the table
             row_index = selected_rows[0].row()
             rule_number = int(self.rules_table.item(row_index, 0).text()) - 1
-            
+
+        # Load rules from file
             with open('rules.json', 'r') as file:
                 rules = json.load(file)
-                            
+
+        # Remove the selected rule
+            deleted_rule = rules.pop(rule_number)
+
+        # Save updated rules back to file
             with open('rules.json', 'w') as file:
                 json.dump(rules, file, indent=4)
-                
+
+        # Refresh UI
             self.load_existing_rules()
-            
-            QMessageBox.information(self, "Success", f"Rule #{rule_number+1} deleted successfully!")
-            
             self.reload_rules()
-            
+
+            QMessageBox.information(self, "Success", f"Rule #{rule_number+1} deleted successfully!")
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to delete rule: {str(e)}")
+
 
     def edit_selected_rule(self):
         selected_rows = self.rules_table.selectionModel().selectedRows()

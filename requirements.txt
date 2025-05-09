@@ -1,3 +1,12 @@
 scapy>=2.5.0
 pydivert>=2.1.0
 PyQt5>=5.15.0 
+
+Use a static IP (or rarely change it)
+✅ Are not hosted on global CDNs (like Cloudflare or Akamai)
+✅ Respond over HTTP or HTTPS (so your firewall rules work)
+
+cd /d F:\study\Semester4\IS\lab\ISProject\InformationSecurity
+educko.com  65.108.97.18
+neverssl.com  34.223.124.45
+httpbin.org 13.216.193.196
